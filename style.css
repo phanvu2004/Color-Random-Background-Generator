@@ -1,0 +1,55 @@
+:root {
+  --background-change: black;
+  --background-color: white;
+}
+
+body {
+  margin: 0;
+  font-family: monospace;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  display: inline-block;
+  border: 0px;
+  font-size: 20px;
+  border-radius: 10px;
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent;
+}
+
+p.button-value {
+  background-color: transparent;
+  color: black;
+  border: 5px solid black;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+div#backgroundChange {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -999;
+  background-color: var(--background-color);
+}
+
+div.backgroundChange {
+  animation: changeColor;
+  animation-timing-function: linear;
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes changeColor {
+  100% {
+    background-color: var(--background-change);
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
