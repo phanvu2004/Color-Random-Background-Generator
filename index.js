@@ -1,17 +1,15 @@
-const id1Block = document.getElementById("id1");
-const timeDuration = 1000;
+const id1Block = document.getElementById("button");
 
-const elemAnimation = (str) => {
+const convertStrToNum = (str) => {
     let newStr = str;
-    newStr = newStr.replace("s","")
+    newStr = newStr.replace("ms","")
 
     let newNum = +newStr;
-    newNum *= timeDuration;
 
-    return newNum + 10;
+    return newNum; 
 };
-let boundAnimation = "bound_animation";
-const buttonAnimationBound = (boundAnimation) => {
+
+const buttonAnimationBound = (boundAnimation, timeDuration) => {
     if (id1Block.className.length != boundAnimation.length) {
         id1Block.className += boundAnimation; 
         setTimeout(() => { 
@@ -22,37 +20,52 @@ const buttonAnimationBound = (boundAnimation) => {
     // else if (id1Block.className === boundAnimation) {    
         // }
 }
+
 const changeBackground = (red, green, blue) => {
     return `rgb(${red}, ${green}, ${blue})`
 }
+
+let boundAnimation = "bound-animation";
 let smoothChangeBackground = "backgroundChange"
 let backgroundChange = document.getElementById("backgroundChange");
-const smoothChange = (smoothChangeBackground) => {
+
+const smoothChange = (smoothChangeBackground, timeDuration) => {
     backgroundChange.className += smoothChangeBackground;
     setTimeout(() => {
         backgroundChange.className = "";
     }, timeDuration)
 }
+
 const setCssVariable = (value, cssVariable) => {
     let setVariable = document.querySelector(':root')
     setVariable.style.setProperty(cssVariable, value )
 }
 
-id1Block.onclick = () => {
+const changeBackgroundFunc = (timeDuration) => {
     let red = Math.floor(Math.random() * 250)
     let green = Math.floor(Math.random() * 250)
     let blue = Math.floor(Math.random() * 250)
 
     let backgroundColor = changeBackground(red, green, blue);
 
+
     if (backgroundChange.className.length != smoothChangeBackground.length){
         let cssVariable = '--background-change'
         setCssVariable(backgroundColor, cssVariable)
-        smoothChange(smoothChangeBackground);
+        smoothChange(smoothChangeBackground, timeDuration);
         setTimeout(() => {
             document.getElementById('backgroundChange').style.backgroundColor = backgroundColor;
         }, timeDuration)
     }
+}
+
+const getCssVariable = document.querySelector(':root')
+let buttonTiming = getComputedStyle(getCssVariable).getPropertyValue('--button-animation-duration');
+let backgroundTiming = getComputedStyle(getCssVariable).getPropertyValue('--background-change-duration');
+id1Block.onclick = () => {
+    changeBackgroundFunc(convertStrToNum( backgroundTiming ))
+    buttonAnimationBound(boundAnimation, convertStrToNum(buttonTiming))
+    // id1Block.innerHTML = elemAnimation(buttonTiming)
 }
 
 const setDefaultBackground = () => {
@@ -62,5 +75,6 @@ const setDefaultBackground = () => {
 
     let cssValue = '--background-color'
     setCssVariable(changeBackground(red, green, blue),cssValue )
+
 }
 setDefaultBackground()

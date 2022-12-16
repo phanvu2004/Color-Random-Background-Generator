@@ -9,7 +9,8 @@ backgroundChange	style.scss	/^div#backgroundChange {$/;"	i
 backgroundChange	style.scss	/^div.backgroundChange {$/;"	c
 backgroundWhite	_variable.scss	/^$backgroundWhite: white;$/;"	v
 body	style.scss	/^body {$/;"	t
+bound-animation	style.scss	/^.bound-animation {$/;"	c
 button	style.scss	/^button { $/;"	t
-button-value	style.scss	/^p.button-value {$/;"	c
 fontSize	style.scss	/^$fontSize: 20px;$/;"	v
 pColor	style.scss	/^$pColor: black;$/;"	v
+paddingSize	style.scss	/^$paddingSize: 10px;$/;"	v

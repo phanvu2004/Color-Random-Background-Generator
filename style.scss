@@ -2,6 +2,8 @@
 :root {
     --background-change: black;
     --background-color: white;
+    --button-animation-duration: 700ms;
+    --background-change-duration: 1000ms;
 }
 body {
     margin: 0;
@@ -11,25 +13,31 @@ body {
     justify-content: center;
     align-items: center;
 }
-
+$paddingSize: 10px;
 $fontSize: 20px;
+$pColor: black;
+.bound-animation {
+    animation: bound;
+    animation-duration: var(--button-animation-duration);
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
 button { 
+    color: $pColor;
     display: inline-block;
     border: 0px;
     font-size: $fontSize;
-    border-radius: 10px;
-    position: relative;
-    width: fit-content;
-    height: fit-content;
-    background-color: transparent;
-}
-$pColor: black;
-p.button-value {
-    background-color: transparent;
-    color: $pColor;
     border: 5px solid $pColor;
-    padding: 10px;
-    border-radius: 10px;
+    border-radius: 15px;
+    position: relative;
+    background-color: transparent;
+    padding: $paddingSize;
+}
+@keyframes bound {
+    50% {
+        padding: calc($paddingSize - 2px);
+        font-size: calc($fontSize - 5px);
+    }
 }
 div#backgroundChange {
     width: 100vw;
@@ -41,7 +49,7 @@ div#backgroundChange {
 div.backgroundChange {
     animation: changeColor;
     animation-timing-function: linear;
-    animation-duration: 1000ms;
+    animation-duration: var(--background-change-duration);
     animation-iteration-count: 1;
 }
 @keyframes changeColor {
