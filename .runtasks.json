@@ -1,0 +1,37 @@
+{
+    "tasks": [
+        {
+            "name": "Liveserver in google",
+            "cmd": "live-server --browser=google-chrome-stable"
+        },
+        {
+            "name": "Liveserver in firefox",
+            "cmd": "live-server --browser=firefox"
+        },
+        {
+            "name": "create package.json",
+            "cmd": "yarn init"
+        },
+        {
+            "name": "Run Sass",
+            "cmd": "sass style.scss style.css --watch"
+        },
+        {
+            "name": "Run Ctags",
+            "cmd": "ctags -R *"
+        },
+        {
+            "name": "delete tags",
+            "cmd": "rm tags -r"
+        },
+        {
+            "name": "frontend",
+            "cmd": "jspr",
+            "cwd": "${config_dir}"
+        },
+        {
+            "name": "create index.html, style.css, index.js",
+            "cmd": "touch index.html style.css index.js"
+        }
+    ]
+}

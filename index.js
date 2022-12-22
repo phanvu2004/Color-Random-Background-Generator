@@ -10,15 +10,14 @@ const convertStrToNum = (str) => {
 };
 
 const buttonAnimationBound = (boundAnimation, timeDuration) => {
-    if (id1Block.className.length != boundAnimation.length) {
+    if (id1Block.className != boundAnimation) {
         id1Block.className += boundAnimation; 
-        setTimeout(() => { 
-            id1Block.className = "";
-        }, timeDuration);
+        if (id1Block.className == boundAnimation) {
+            setTimeout(() => { 
+                id1Block.className = id1Block.className.replace(boundAnimation, "");
+            }, timeDuration);
+        }
     };
-    // const elem = document.querySelector('.bound_animation')
-    // else if (id1Block.className === boundAnimation) {    
-        // }
 }
 
 const changeBackground = (red, green, blue) => {
@@ -62,12 +61,11 @@ const changeBackgroundFunc = (timeDuration) => {
 const getCssVariable = document.querySelector(':root')
 let buttonTiming = getComputedStyle(getCssVariable).getPropertyValue('--button-animation-duration');
 let backgroundTiming = getComputedStyle(getCssVariable).getPropertyValue('--background-change-duration');
-id1Block.onclick = () => {
+id1Block.addEventListener("click", () => {
     changeBackgroundFunc(convertStrToNum( backgroundTiming ))
     buttonAnimationBound(boundAnimation, convertStrToNum(buttonTiming))
     // id1Block.innerHTML = elemAnimation(buttonTiming)
-}
-
+})
 const setDefaultBackground = () => {
     let red = Math.floor(Math.random() * 250)
     let green = Math.floor(Math.random() * 250)
@@ -75,6 +73,5 @@ const setDefaultBackground = () => {
 
     let cssValue = '--background-color'
     setCssVariable(changeBackground(red, green, blue),cssValue )
-
 }
 setDefaultBackground()
